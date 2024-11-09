@@ -1,0 +1,62 @@
+﻿<Window x:Class="Movies.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Movies"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="500">
+    <Grid>       
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical" Width="250" Height="150" Margin="0,0,0,30">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                <Image Width="20" Source="https://pics.freeicons.io/uploads/icons/png/154248133316313445984151-512.png"/>
+                <AccessText Text="  "/>
+                <AccessText Text="Film oversigt" FontSize="20" FontFamily="Berlin Sans FB"/>
+            </StackPanel>
+
+            <DockPanel Margin="10">
+                <TextBlock Text="Titel" DockPanel.Dock="Left" />
+                <TextBox x:Name="tb_Title" FontSize="13" FontWeight="Medium" FontFamily="Montserrat" Foreground="Black" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,1" Text="{Binding SelectedMovie.Title, Mode=TwoWay}" Margin="5,0" DockPanel.Dock="Right" Width="150" HorizontalAlignment="Right" />               
+            </DockPanel>
+            <DockPanel Margin="10">
+                <TextBlock Text="Varighed" DockPanel.Dock="Left" />
+                <TextBox x:Name="tb_Length" FontSize="13" FontWeight="Medium" FontFamily="Montserrat" Foreground="Black" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,1" Text="{Binding SelectedMovie.Length, Mode=TwoWay}" Margin="5,0" DockPanel.Dock="Right" Width="150" HorizontalAlignment="Right"/>
+            </DockPanel>
+            <DockPanel Margin="10">
+                <TextBlock Text="Genre" DockPanel.Dock="Left" />
+                <TextBox x:Name="tb_Genre" FontSize="13" FontWeight="Medium" FontFamily="Montserrat" Foreground="Black" CaretBrush="LightGray" BorderBrush="DarkGray" BorderThickness="0,0,0,1" Text="{Binding SelectedMovie.Genre, Mode=TwoWay}" Margin="5,0" DockPanel.Dock="Right" Width="150" HorizontalAlignment="Right"/>
+            </DockPanel>
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,180,0,0">
+            <Button x:Name="btn_Add" Content="Tilføj" Cursor="Hand" Height="20" Width="50" Margin="15,0,15,0" Click="btn_Add_Click"/>
+            <Button x:Name="btn_Delete" Content="Slet" Cursor="Hand" Height="20" Width="50" Margin="0,0,15,0" Click="btn_Delete_Click"/>
+            <Button x:Name="btn_Update" Content="Opdater" Cursor="Hand" Height="20" Width="50" Margin="0,0,15,0" Click="btn_Update_Click"/>
+            <Button x:Name="btn_Find" Content="Søg" Height="20" Cursor="Hand" Width="50" Margin="0,0,15,0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Grid  Height="160" Width="225" Margin="0,20,0,20">
+                <Border BorderThickness="1" BorderBrush="Gray">
+                    <ListView x:Name="lv_Movie" Grid.Column ="1"  ItemsSource="{Binding Movies}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListView_SelectionChanged">
+                        <ListView.View>
+                            <GridView>                                
+                                <GridViewColumn Header="Title" Width="70" DisplayMemberBinding="{Binding Title}" />
+                                <GridViewColumn Header="Length" Width="70" DisplayMemberBinding="{Binding Length}" />
+                                <GridViewColumn Header="Genre" Width="80" DisplayMemberBinding="{Binding Genre}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
